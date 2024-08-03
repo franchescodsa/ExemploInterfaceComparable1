@@ -1,4 +1,6 @@
-﻿namespace ExemploInterfaceComparable
+﻿using ExemploInterfaceComparable.Entitites;
+
+namespace ExemploInterfaceComparable
 {
     internal class Program
     {
@@ -11,21 +13,24 @@ Faça um programa para ler um arquivo contendo nomes de pessoas (um nome por
 linha), armazenando-os em uma lista. Depois, ordenar os dados dessa lista e mostra-los 
 ordenadamente na tela. Nota: o caminho do arquivo pode ser informado "hardcode".
              */
-            string path = @"f:\in.txt";
+            string path = @"f:\in2.txt";
 
             try
             {
                 using (StreamReader sr = File.OpenText(path))
                 {
-                    List<string> list = new List<string>();
+                    List<Employee> list = new List<Employee>();
                     while (!sr.EndOfStream)
                     {
-                        list.Add(sr.ReadLine());
+                        list.Add(new Employee(sr.ReadLine()));
                     }
+                    //Colocar em orden
                     list.Sort();
-                    foreach (string str in list)
+                    //Invereter a orden
+                    list.Reverse();
+                    foreach (Employee emp in list)
                     {
-                        Console.WriteLine(str);
+                        Console.WriteLine(emp);
 
                     }
                 }
